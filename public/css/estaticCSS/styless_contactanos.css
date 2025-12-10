@@ -1,0 +1,257 @@
+/* Body and global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #d4af37, #b8860b);
+    padding: 10px 20px;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 30px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ff9800;
+}
+
+header .login-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #000000;
+    background: #d4af37;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+header .login-btn:hover {
+    background-color: #f57c00;
+}
+
+.container-fluid {
+    background-color: #cda42b;
+}
+
+.offcanvas-header {
+    background-color:#cda42b;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.contact-section h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-section .form-label {
+    font-weight: 700;
+}
+
+.form-control {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.form-check-label {
+    font-weight: 700;
+}
+
+.submit-btn {
+    background-color: #ff9800;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #f57c00;
+}
+
+/* Modal styles */
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-body img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.modal-footer button {
+    background-color: #ff9800;
+    color: white;
+    font-size: 1rem;
+}
+
+.modal-footer button:hover {
+    background-color: #f57c00;
+}
+
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    z-index: 1000;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+    background-color: #128c7e;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Adjust header */
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    header .login-btn {
+        position: static;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Contact Section */
+    .contact-section h1 {
+        font-size: 2rem;
+    }
+
+    /* Form controls */
+    .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Submit button */
+    .submit-btn {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    /* Modal */
+    .modal-body img {
+        width: 100%;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust header for very small screens */
+    header {
+        padding: 15px;
+    }
+
+    header nav {
+        gap: 10px;
+    }
+
+    header nav a {
+        font-size: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 12px;
+        padding: 15px;
+    }
+}

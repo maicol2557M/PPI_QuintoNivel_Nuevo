@@ -1,0 +1,163 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000000;
+}
+
+.login-container {
+    background-color: #121212;
+    border: 2px solid #cda42b;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(205, 164, 43, 0.5);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.login-header p {
+    color: #cda42b;
+    font-size: 0.9rem;
+}
+
+.form-label {
+    color: #cda42b;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 1px solid #cda42b;
+}
+
+.form-control:focus {
+    border-color: #cda42b;
+    box-shadow: 0 0 5px rgba(205, 164, 43, 0.5);
+}
+
+.btn-login {
+    background-color: #cda42b;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background-color: #d5b141;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-footer a {
+    color: #cda42b;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.btn-back {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 1rem;
+}
+
+.btn-back button {
+    background-color: #cda42b;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.btn-back button:hover {
+    background-color: #d5b141;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title, .modal-body {
+    color: #000;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: none;
+}
+
+.error-message.d-block {
+    display: block;
+}
+
+.modal-content {
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: #cda42b;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #d5b141;
+}
+
+.logo-container img {
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.icon-container {
+    background-color: #333;
+}
+
+.icon-container i {
+    color: #fff;
+}
