@@ -24,7 +24,7 @@ Route::get('/instalar-todo', function () {
         Artisan::call('route:clear');
 
         // 2. Ejecutar las migraciones (crear las tablas en Postgres)
-        Artisan::call('migrate --force');
+        Artisan::call('migrate:fresh --seed --force');
 
         return "✅ Éxito: Sistema optimizado y base de datos actualizada.";
     } catch (\Exception $e) {
