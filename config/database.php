@@ -95,7 +95,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'no-verify', // Esencial para evitar errores de certificado en Render
+            'sslmode' => 'prefer', // CAMBIO: 'prefer' es el estándar compatible
         ],
 
         'sqlsrv' => [
