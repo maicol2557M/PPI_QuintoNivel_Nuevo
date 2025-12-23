@@ -23,3 +23,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Permisos para Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Al final del archivo, antes de cualquier comando de inicio
+CMD php artisan migrate --force && apache2-foreground
