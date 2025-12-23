@@ -95,7 +95,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'prefer', // CAMBIO: 'prefer' es el estándar compatible
+            'sslmode' => 'prefer', // Este valor sí es válido y obligatorio
         ],
 
         'sqlsrv' => [
