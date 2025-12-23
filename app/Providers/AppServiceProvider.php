@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route; // ESTA LÍNEA ES VITAL
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 
@@ -23,32 +24,30 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
-         * Forzar HTTPS en Render
-         * Esto soluciona el problema de estilos CSS y JS que no cargan.
+         * 1. Forzar HTTPS en Render para arreglar CSS/JS
          */
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
         }
 
         /**
-         * Configurar la URL de redirección cuando un usuario autenticado
-         * intente acceder a rutas destinadas a invitados (middleware 'guest').
+         * 2. Configurar la URL de redirección
          */
         RedirectIfAuthenticated::redirectUsing(function ($request) {
             try {
                 if (Auth::check()) {
                     $user = Auth::user();
+                    
                     if ($user && isset($user->rol) && $user->rol === 'Cliente') {
                         return route('home');
                     }
                     
-                    // Verificamos si la ruta 'dashboard' existe antes de redirigir
-                    if (\Route::has('dashboard')) {
+                    if (Route::has('dashboard')) {
                         return route('dashboard');
                     }
                 }
             } catch (\Exception $e) {
-                // Log del error si es necesario: \Log::error($e->getMessage());
+                // Error silencioso
             }
 
             return '/';
