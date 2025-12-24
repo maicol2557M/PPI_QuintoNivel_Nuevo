@@ -10,6 +10,10 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $admin;
+    protected $asistente;
+    protected $abogado;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -31,33 +35,62 @@ class UserControllerTest extends TestCase
     {
         $response = $this->actingAs($this->asistente)
                         ->post('/usuarios', [
-                            'nombre' => 'Nuevo Usuario',
-                            'email' => 'nuevo@example.com',
-                            'rol' => 'Administrador',
+                            'nombre' => 'Nuevo Admin',
+                            'email' => 'admin@example.com',
+                            'id_cedula' => '0987654321',
+                            'identificacion' => 'AD123456',
                             'password' => 'password',
-                            'password_confirmation' => 'password'
+                            'password_confirmation' => 'password',
+                            'rol' => 'Administrador'
                         ]);
         
         $this->assertDatabaseMissing('usuarios', [
-            'email' => 'nuevo@example.com',
+            'email' => 'admin@example.com',
             'rol' => 'Administrador'
         ]);
     }
 
     public function test_asistente_puede_crear_abogados()
     {
+        // Datos del nuevo usuario abogado
+        $userData = [
+            'nombre' => 'Nuevo Abogado',
+            'email' => 'abogado@example.com',
+            'id_cedula' => '1234567890',
+            'identificacion' => 'AB123456',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'rol' => 'Abogado'
+        ];
+
+        // Enviar la petición para crear el usuario
         $response = $this->actingAs($this->asistente)
-                        ->post('/usuarios', [
-                            'nombre' => 'Nuevo Abogado',
-                            'email' => 'abogado@example.com',
-                            'rol' => 'Abogado',
-                            'password' => 'password',
-                            'password_confirmation' => 'password'
-                        ]);
+                        ->post(route('usuarios.store'), $userData);
+
+        // Obtener el usuario recién creado
+        $user = User::where('email', 'abogado@example.com')->first();
+        $this->assertNotNull($user, 'El usuario no fue creado en la base de datos');
         
+        // Verificar redirección a la vista de detalle del usuario
+        $response->assertRedirect(route('usuarios.show', $user->usuario_id));
+
+        // Verificar que el usuario fue creado en la base de datos
         $this->assertDatabaseHas('usuarios', [
             'email' => 'abogado@example.com',
-            'rol' => 'Abogado'
+            'rol' => 'Abogado',
+            'id_cedula' => '1234567890',
+            'identificacion' => 'AB123456'
         ]);
+
+        // Verificar los datos del usuario
+        $this->assertEquals('Nuevo Abogado', $user->nombre);
+        $this->assertEquals('Abogado', $user->rol);
+        $this->assertEquals('1234567890', $user->id_cedula);
+        $this->assertEquals('AB123456', $user->identificacion);
+        
+        // Opcional: Verificar el campo activo si existe
+        if (property_exists($user, 'activo')) {
+            $this->assertTrue((bool)$user->activo);
+        }
     }
 }
