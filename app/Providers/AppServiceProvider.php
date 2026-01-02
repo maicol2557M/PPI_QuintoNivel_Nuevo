@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         // 1. Forzar HTTPS en producción (Render)
         if (config('app.env') !== 'local') {
             URL::forceScheme('https');
-        }
+        } 
 
         // 2. Lógica de redirección simplificada
         RedirectIfAuthenticated::redirectUsing(function ($request) {

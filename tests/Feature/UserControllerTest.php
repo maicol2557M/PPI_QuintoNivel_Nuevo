@@ -26,7 +26,7 @@ class UserControllerTest extends TestCase
     {
         $response = $this->actingAs($this->asistente)
                         ->get('/usuarios');
-        
+
         $response->assertStatus(200)
                 ->assertViewIs('usuarios.index');
     }
@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase
                             'password_confirmation' => 'password',
                             'rol' => 'Administrador'
                         ]);
-        
+
         $this->assertDatabaseMissing('usuarios', [
             'email' => 'admin@example.com',
             'rol' => 'Administrador'
@@ -70,7 +70,7 @@ class UserControllerTest extends TestCase
         // Obtener el usuario recién creado
         $user = User::where('email', 'abogado@example.com')->first();
         $this->assertNotNull($user, 'El usuario no fue creado en la base de datos');
-        
+
         // Verificar redirección a la vista de detalle del usuario
         $response->assertRedirect(route('usuarios.show', $user->usuario_id));
 
@@ -87,7 +87,7 @@ class UserControllerTest extends TestCase
         $this->assertEquals('Abogado', $user->rol);
         $this->assertEquals('1234567890', $user->id_cedula);
         $this->assertEquals('AB123456', $user->identificacion);
-        
+
         // Opcional: Verificar el campo activo si existe
         if (property_exists($user, 'activo')) {
             $this->assertTrue((bool)$user->activo);

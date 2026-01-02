@@ -24,7 +24,7 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         $response = $this->actingAs($this->asistente)
                         ->get('/ruta-solo-admin');
-        
+
         $response->assertStatus(403);
     }
 
@@ -32,7 +32,7 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         $response = $this->actingAs($this->admin)
                         ->get('/cualquier-ruta');
-        
+
         // Ajusta según tu lógica de rutas
         $response->assertStatus(200);
     }
@@ -41,7 +41,7 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         $response = $this->actingAs($this->asistente)
                         ->get(route('usuarios.index'));
-        
+
         $response->assertSuccessful();
     }
 
@@ -49,7 +49,7 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         $response = $this->actingAs($this->admin)
                         ->get(route('usuarios.index'));
-        
+
         $response->assertSuccessful();
     }
 
@@ -57,17 +57,17 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         // Crear un usuario inactivo
         $usuario = User::factory()->create(['activo' => false]);
-        
+
         // Verificar que el usuario se creó correctamente como inactivo
         $this->assertFalse((bool)$usuario->activo);
-        
+
         // Intentar reactivar el usuario como asistente
         $response = $this->actingAs($this->asistente)
                         ->post(route('usuarios.reactivate', $usuario));
-        
+
         // Verificar que se redirija (302)
         $response->assertStatus(302);
-        
+
         // Verificar que el usuario siga inactivo
         $usuario->refresh();
         $this->assertFalse((bool)$usuario->activo, 'El usuario no debería haberse reactivado');
